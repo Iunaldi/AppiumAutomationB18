@@ -41,7 +41,7 @@ public class CalculatorTests {
 //        CapabilityType.PLATFORM_NAME == "platformName"
 //        MobileCapabilityType.AUTOMATION_NAME == "automationName"
 //        AndroidMobileCapabilityType.APP_ACTIVITY == "appActivity"
-
+//      mandatory: platformName, deviceName, platformVersion, automationName, ( (appPackage && appActivity) || app || browserName)
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability("platformName", "Android");
         desiredCapabilities.setCapability("deviceName", "Pixel_2");
