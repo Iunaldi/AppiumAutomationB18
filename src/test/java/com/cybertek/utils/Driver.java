@@ -29,6 +29,15 @@ public class Driver {
                     desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
                     driver = new AndroidDriver<>(desiredCapabilities);
                     break;
+                case "ios":
+                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "IOS");
+                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.0");
+//                    we need to have ipa app for IOS, not apk
+//                    desiredCapabilities.setCapability(MobileCapabilityType.APP, ANDROID_APP_URL);
+                    desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Iphone X");
+                    desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
+                    driver = new AndroidDriver<>(desiredCapabilities);
+                    break;
                 default:
                     logger.error("Driver type is not implemented yet!");
                     throw new RuntimeException("Driver type is not implemented yet!");

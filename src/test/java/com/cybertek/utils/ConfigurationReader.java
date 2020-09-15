@@ -12,7 +12,7 @@ public class ConfigurationReader {
     private static Properties properties;
 
     static {
-        try (InputStream inputStream = new FileInputStream("configuration.properties")) {
+        try (InputStream inputStream = new FileInputStream("src/test/resources/configuration.properties")) {
             properties = new Properties();
             properties.load(inputStream);
         } catch (IOException e) {
