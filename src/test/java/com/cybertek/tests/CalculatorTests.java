@@ -3,6 +3,7 @@ package com.cybertek.tests;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,8 +12,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.URL;
 
 public class CalculatorTests {
-
     AndroidDriver<AndroidElement> driver;
+    private final static Logger logger = Logger.getLogger(CalculatorTests.class);
 
     /**
      * {
@@ -47,6 +48,7 @@ public class CalculatorTests {
     @Test
     public void test1() {
         System.out.println("Test 1");
+        logger.info("Test 1");
 
         AndroidElement btn2 = driver.findElementById("com.android.calculator2:id/digit_2");
         AndroidElement equals = driver.findElementByAccessibilityId("equals");
