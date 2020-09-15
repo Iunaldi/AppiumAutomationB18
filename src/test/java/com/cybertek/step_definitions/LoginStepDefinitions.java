@@ -4,6 +4,7 @@ import com.cybertek.pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class LoginStepDefinitions {
     LoginPage loginPage = new LoginPage();
@@ -19,7 +20,8 @@ public class LoginStepDefinitions {
     }
 
     @Then("user verifies that etsy logo is displayed")
-    public void user_verifies_that_etsy_logo_is_displayed() {
-
+    public void user_verifies_that_etsy_logo_is_displayed() throws InterruptedException {
+        Thread.sleep(3000);
+        Assert.assertTrue(loginPage.whatsYourStyleMsg.isDisplayed());
     }
 }

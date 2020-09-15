@@ -17,6 +17,9 @@ public class LoginPage extends BasePage {
     @AndroidFindBy(id = "com.etsy.android:id/button_signin")
     public AndroidElement signInBtnElement;
 
+    @AndroidFindBy(xpath = "//*[@text=\"What's your style?\"]")
+    public AndroidElement whatsYourStyleMsg;
+
     public void login() {
         String email = ConfigurationReader.getProperty("email");
         String password = ConfigurationReader.getProperty("password");

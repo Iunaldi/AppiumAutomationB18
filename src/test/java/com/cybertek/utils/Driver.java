@@ -3,6 +3,7 @@ package com.cybertek.utils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -44,7 +45,7 @@ public class Driver {
                     desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Iphone X");
                     desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
                     try {
-                        driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+                        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
