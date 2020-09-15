@@ -1,14 +1,23 @@
 package com.cybertek.tests;
 
 
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.offset.ElementOption;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
 import java.net.URL;
 
 public class CalculatorTests {
@@ -65,8 +74,37 @@ public class CalculatorTests {
         Assert.assertEquals("4", actualResult);
     }
 
+    @Test
+    public void test2() {
+//        WebElement for everything
+//        MobileElement for IOS and Android
+//        AndroidElement only for android
+//        IOSElement only for ios elements
+        MobileElement btn7 = driver.findElement(MobileBy.id("com.android.calculator2:id/digit_7"));
+        MobileElement btn8 = driver.findElement(MobileBy.id("com.android.calculator2:id/digit_8"));
+//        MobileElement divide = driver.findElement(MobileBy.AccessibilityId("divide"));
+        MobileElement divide = driver.findElementByAccessibilityId("divide");
+        MobileElement result = driver.findElementById("com.android.calculator2:id/result");
+        MobileElement equals = driver.findElementByAccessibilityId("equals");
+
+
+        TouchAction touchActions = new TouchAction(driver);
+
+//        btn7.click();
+//        divide.click();
+//        btn8.click();
+//        equals.click();
+        touchActions.tap(new TapOptions().withElement(new ElementOption().withElement(btn7))).perform();
+        touchActions.tap(new TapOptions().withElement(new ElementOption().withElement(divide))).perform();
+        touchActions.tap(new TapOptions().withElement(new ElementOption().withElement(btn8))).perform();
+        touchActions.tap(new TapOptions().withElement(new ElementOption().withElement(equals))).perform();
+
+        String resultValue = result.getText();
+        logger.info("Result is: " + resultValue);
+    }
+
     @After
-    public void tearDown(){
+    public void tearDown() {
         driver.closeApp();
     }
 }
