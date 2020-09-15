@@ -7,6 +7,9 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class Driver {
     private static AppiumDriver<MobileElement> driver;
     private static DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -19,7 +22,7 @@ public class Driver {
     public static AppiumDriver<MobileElement> getDriver() {
         if (driver == null) {
             String platform = ConfigurationReader.getProperty("platform");
-            logger.info("Running tests on: "+platform);
+            logger.info("Running tests on: " + platform);
             switch (platform) {
                 case "android":
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
@@ -27,7 +30,11 @@ public class Driver {
                     desiredCapabilities.setCapability(MobileCapabilityType.APP, ANDROID_APP_URL);
                     desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
                     desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-                    driver = new AndroidDriver<>(desiredCapabilities);
+                    try {
+                        driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "ios":
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "IOS");
@@ -36,7 +43,11 @@ public class Driver {
 //                    desiredCapabilities.setCapability(MobileCapabilityType.APP, ANDROID_APP_URL);
                     desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Iphone X");
                     desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
-                    driver = new AndroidDriver<>(desiredCapabilities);
+                    try {
+                        driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 default:
                     logger.error("Driver type is not implemented yet!");
